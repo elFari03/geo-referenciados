@@ -12,20 +12,29 @@ function generate() {
     });
   }
 }
+generate();
 
-function getAll() { return users; }
-function getById(id) { return users.find(u => u.id == id); }
+function getAll() {
+  return users;
+}
+
+function getById(id) {
+  return users.find(u => u.id == id);
+}
+
 function create(data) {
   const newUser = { id: nextId++, ...data };
   users.push(newUser);
   return newUser;
 }
+
 function update(id, changes) {
   const index = users.findIndex(u => u.id == id);
   if (index === -1) return null;
   users[index] = { ...users[index], ...changes };
   return users[index];
 }
+
 function remove(id) {
   const index = users.findIndex(u => u.id == id);
   if (index === -1) return false;
@@ -33,5 +42,4 @@ function remove(id) {
   return true;
 }
 
-generate();
 module.exports = { getAll, getById, create, update, remove };

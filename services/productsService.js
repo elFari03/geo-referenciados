@@ -17,9 +17,15 @@ function generate() {
     });
   }
 }
+generate();
 
-function getAll() { return products; }
-function getById(id) { return products.find(p => p.id == id); }
+function getAll() {
+  return products;
+}
+
+function getById(id) {
+  return products.find(p => p.id == id);
+}
 
 function create(data) {
   // Validar brandId y categoryId
@@ -49,5 +55,5 @@ function remove(id) {
   return true;
 }
 
-generate();
+
 module.exports = { getAll, getById, create, update, remove };

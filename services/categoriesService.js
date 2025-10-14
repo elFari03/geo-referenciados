@@ -11,9 +11,16 @@ function generate() {
     });
   }
 }
+generate();
 
-function getAll() { return categories; }
-function getById(id) { return categories.find(c => c.id == id); }
+function getAll() {
+  return categories;
+}
+
+function getById(id) {
+  return categories.find(c => c.id == id);
+}
+
 function create(data) {
   const newCategory = { id: nextId++, ...data };
   categories.push(newCategory);
@@ -32,5 +39,5 @@ function remove(id) {
   return true;
 }
 
-generate();
+
 module.exports = { getAll, getById, create, update, remove };

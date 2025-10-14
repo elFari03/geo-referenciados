@@ -4,21 +4,21 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Rutas principales
+
 const rutas = require('./routes/rutas');
 app.use('/', rutas);
 
-// Ruta raíz
-app.get('/', (req, res) => {
-  res.send('✅ Servidor corriendo en Express 🚀');
+
+app.get('/', (_req, res) => {
+  res.send('Hola desde mi servidor express c:');
 });
 
-// Middleware de errores
-app.use((err, req, res, next) => {
+
+app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(500).json({ message: 'Error interno del servidor' });
 });
 
 app.listen(port, () => {
-  console.log(`✅ Servidor corriendo en http://localhost:${port}`);
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });

@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const service = require('../services/usersService');
 
-// Obtener todos los usuarios
+// GET
 router.get('/users', (req, res) => {
   const users = service.getAll();
   res.json(users);
 });
 
-// Obtener un usuario por ID
+// GET por id
 router.get('/users/:id', (req, res) => {
   const { id } = req.params;
   const user = service.getById(id);
@@ -18,13 +18,13 @@ router.get('/users/:id', (req, res) => {
   res.json(user);
 });
 
-// Crear usuario
+// POST
 router.post('/users', (req, res) => {
   const newUser = service.create(req.body);
   res.status(201).json(newUser);
 });
 
-// Actualizar usuario
+// PUT
 router.put('/users/:id', (req, res) => {
   const { id } = req.params;
   const updatedUser = service.update(id, req.body);
@@ -34,7 +34,7 @@ router.put('/users/:id', (req, res) => {
   res.json(updatedUser);
 });
 
-// Eliminar usuario
+// DELETE
 router.delete('/users/:id', (req, res) => {
   const { id } = req.params;
   const deleted = service.remove(id);
