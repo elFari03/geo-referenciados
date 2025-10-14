@@ -37,8 +37,8 @@ router.put('/users/:id', (req, res) => {
 // DELETE
 router.delete('/users/:id', (req, res) => {
   const { id } = req.params;
-  const deleted = service.remove(id);
-  if (!deleted) {
+  const del = service.remove(id);
+  if (!del) {
     return res.status(404).json({ message: 'Usuario no encontrado' });
   }
   res.json({ message: 'Usuario eliminado correctamente' });

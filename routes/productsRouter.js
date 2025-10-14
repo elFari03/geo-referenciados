@@ -38,8 +38,8 @@ router.put('/:id', (req, res) => {
 // DELETE
 router.delete('/:id', (req, res) => {
   const id = Number(req.params.id);
-  const ok = service.remove(id);
-  if (!ok) return res.status(404).json({ message: 'Producto no encontrado' });
+  const del = service.remove(id);
+  if (!del) return res.status(404).json({ message: 'Producto no encontrado' });
   res.status(204).send();
 });
 

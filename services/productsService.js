@@ -12,8 +12,8 @@ function generate() {
       name: faker.commerce.productName(),
       price: faker.commerce.price(),
       image: faker.image.url(),
-      brandId: brandsService.getAll()[0].id, // asigna primera marca
-      categoryId: categoriesService.getAll()[0].id // asigna primera categoría
+      brandId: brandsService.getAll()[0].id,
+      categoryId: categoriesService.getAll()[0].id
     });
   }
 }

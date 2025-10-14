@@ -36,8 +36,8 @@ router.delete('/:id', (req, res) => {
   const used = productsService.getAll().some(p => p.categoryId === id);
   if (used) return res.status(409).json({ message: 'No se puede eliminar: existen productos usando esta categoría' });
 
-  const ok = service.remove(id);
-  if (!ok) return res.status(404).json({ message: 'Categoría no encontrada' });
+  const del = service.remove(id);
+  if (!del) return res.status(404).json({ message: 'Categoría no encontrada' });
   res.status(204).send();
 });
 

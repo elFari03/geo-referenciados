@@ -36,8 +36,8 @@ router.delete('/:id', (req, res) => {
   const used = productsService.getAll().some(p => p.brandId === id);
   if (used) return res.status(409).json({ message: 'No se puede eliminar: existen productos usando esta marca' });
 
-  const ok = brandsService.remove(id);
-  if (!ok) return res.status(404).json({ message: 'Marca no encontrada' });
+  const del = brandsService.remove(id);
+  if (!del) return res.status(404).json({ message: 'Marca no encontrada' });
   res.status(204).send();
 });
 
