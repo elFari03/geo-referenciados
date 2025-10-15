@@ -22,22 +22,23 @@ function getById(id) {
 }
 
 function create(data) {
-  const newCategory = { id: nextId++, ...data };
+  const newCategory = { id: nextId++, ...data }; // guarda cualquier campo extra
   categories.push(newCategory);
   return newCategory;
 }
+
 function update(id, changes) {
   const index = categories.findIndex(c => c.id == id);
   if (index === -1) return null;
   categories[index] = { ...categories[index], ...changes };
   return categories[index];
 }
+
 function remove(id) {
   const index = categories.findIndex(c => c.id == id);
   if (index === -1) return false;
   categories.splice(index, 1);
   return true;
 }
-
 
 module.exports = { getAll, getById, create, update, remove };

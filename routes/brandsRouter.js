@@ -16,19 +16,32 @@ router.get('/:id', (req, res) => {
 
 // POST
 router.post('/', (req, res) => {
-  const { name } = req.body;
-  if (!name) return res.status(400).json({ message: 'Nombre es requerido' });
-  const newB = brandsService.create({ name });
+  const { name, descripcion, precio, imagen, brandId, categoryId } = req.body;
+
+  // Validación de todos los campos
+  if (!name || !descripcion || precio == null || !imagen || !brandId || !categoryId) {
+    return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId, categoryId' });
+  }
+
+  const newB = brandsService.create({ name, descripcion, precio, imagen, brandId, categoryId });
   res.status(201).json(newB);
 });
 
 // PUT
 router.put('/:id', (req, res) => {
   const id = Number(req.params.id);
-  const updated = brandsService.update(id, req.body);
+  const { name, descripcion, precio, imagen, brandId, categoryId } = req.body;
+
+
+  if (!name || !descripcion || precio == null || !imagen || !brandId || !categoryId) {
+    return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId, categoryId' });
+  }
+
+  const updated = brandsService.update(id, { name, descripcion, precio, imagen, brandId, categoryId });
   if (!updated) return res.status(404).json({ message: 'Marca no encontrada' });
   res.json(updated);
 });
+
 
 // DELETE
 router.delete('/:id', (req, res) => {

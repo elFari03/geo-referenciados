@@ -15,8 +15,15 @@ router.get('/:id', (req, res) => {
 
 // POST
 router.post('/', (req, res) => {
+  const { name, descripcion, precio, imagen, brandId, categoryId } = req.body;
+
+  // Validación de campos obligatorios
+  if (!name || !descripcion || precio == null || !imagen || !brandId || !categoryId) {
+    return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId, categoryId' });
+  }
+
   try {
-    const newP = service.create(req.body);
+    const newP = service.create({ name, descripcion, precio, imagen, brandId, categoryId });
     res.status(201).json(newP);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -26,8 +33,15 @@ router.post('/', (req, res) => {
 // PUT
 router.put('/:id', (req, res) => {
   const id = Number(req.params.id);
+  const { name, descripcion, precio, imagen, brandId, categoryId } = req.body;
+
+  // Validación de campos obligatorios
+  if (!name || !descripcion || precio == null || !imagen || !brandId || !categoryId) {
+    return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId, categoryId' });
+  }
+
   try {
-    const updated = service.update(id, req.body);
+    const updated = service.update(id, { name, descripcion, precio, imagen, brandId, categoryId });
     if (!updated) return res.status(404).json({ message: 'Producto no encontrado' });
     res.json(updated);
   } catch (err) {

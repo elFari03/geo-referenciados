@@ -6,14 +6,18 @@ let products = [];
 let nextId = 1;
 
 function generate() {
+  const allBrands = brandsService.getAll();
+  const allCategories = categoriesService.getAll();
+
   for (let i = 0; i < 10; i++) {
     products.push({
       id: nextId++,
       name: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      image: faker.image.url(),
-      brandId: brandsService.getAll()[0].id,
-      categoryId: categoriesService.getAll()[0].id
+      descripcion: faker.commerce.productDescription(),
+      precio: Number(faker.commerce.price()),
+      imagen: faker.image.url(),
+      brandId: allBrands[Math.floor(Math.random() * allBrands.length)].id,
+      categoryId: allCategories[Math.floor(Math.random() * allCategories.length)].id
     });
   }
 }
@@ -54,6 +58,5 @@ function remove(id) {
   products.splice(index, 1);
   return true;
 }
-
 
 module.exports = { getAll, getById, create, update, remove };

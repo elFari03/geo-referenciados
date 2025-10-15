@@ -38,6 +38,7 @@ function update(id, changes) {
   return brands[index];
 }
 
+
 function remove(id) {
   const index = brands.findIndex(b => b.id == id);
   if (index === -1) return false;

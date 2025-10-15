@@ -16,16 +16,28 @@ router.get('/:id', (req, res) => {
 
 // POST
 router.post('/', (req, res) => {
-  const { name } = req.body;
-  if (!name) return res.status(400).json({ message: 'Nombre es requerido' });
-  const newCat = service.create({ name });
+  const { name, descripcion, precio, imagen, brandId } = req.body; // ahora validamos más campos
+
+  // Validación de todos los campos requeridos
+  if (!name || !descripcion || precio == null || !imagen || !brandId) {
+    return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId' });
+  }
+
+  const newCat = service.create({ name, descripcion, precio, imagen, brandId });
   res.status(201).json(newCat);
 });
 
 // PUT
 router.put('/:id', (req, res) => {
   const id = Number(req.params.id);
-  const updated = service.update(id, req.body);
+  const { name, descripcion, precio, imagen, brandId } = req.body;
+
+  // Validación de todos los campos requeridos
+  if (!name || !descripcion || precio == null || !imagen || !brandId) {
+    return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId' });
+  }
+
+  const updated = service.update(id, { name, descripcion, precio, imagen, brandId });
   if (!updated) return res.status(404).json({ message: 'Categoría no encontrada' });
   res.json(updated);
 });
