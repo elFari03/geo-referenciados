@@ -18,7 +18,6 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const { name, descripcion, precio, imagen, brandId } = req.body; // ahora validamos más campos
 
-  // Validación de todos los campos requeridos
   if (!name || !descripcion || precio == null || !imagen || !brandId) {
     return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId' });
   }
@@ -32,7 +31,6 @@ router.put('/:id', (req, res) => {
   const id = Number(req.params.id);
   const { name, descripcion, precio, imagen, brandId } = req.body;
 
-  // Validación de todos los campos requeridos
   if (!name || !descripcion || precio == null || !imagen || !brandId) {
     return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId' });
   }

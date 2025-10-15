@@ -18,7 +18,6 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const { name, descripcion, precio, imagen, brandId, categoryId } = req.body;
 
-  // Validación de todos los campos
   if (!name || !descripcion || precio == null || !imagen || !brandId || !categoryId) {
     return res.status(400).json({ message: 'Todos los campos son requeridos: name, descripcion, precio, imagen, brandId, categoryId' });
   }

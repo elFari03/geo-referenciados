@@ -22,7 +22,6 @@ router.get('/users/:id', (req, res) => {
 router.post('/users', (req, res) => {
   const { name, email, password } = req.body;
 
-  // Validación de campos obligatorios
   if (!name || !email || !password) {
     return res.status(400).json({ message: 'Campos requeridos: name, email y password' });
   }
@@ -36,7 +35,6 @@ router.put('/users/:id', (req, res) => {
   const { id } = req.params;
   const { name, email, password } = req.body;
 
-  // Validación de campos obligatorios
   if (!name || !email || !password) {
     return res.status(400).json({ message: 'Campos requeridos: name, email y password' });
   }

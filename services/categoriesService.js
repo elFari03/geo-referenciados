@@ -22,7 +22,7 @@ function getById(id) {
 }
 
 function create(data) {
-  const newCategory = { id: nextId++, ...data }; // guarda cualquier campo extra
+  const newCategory = { id: nextId++, ...data };
   categories.push(newCategory);
   return newCategory;
 }
